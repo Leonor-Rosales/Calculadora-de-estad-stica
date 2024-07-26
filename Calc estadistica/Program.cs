@@ -12,16 +12,27 @@ List<double> NumberList = new List<double>();
     Console.Write("Ingrese la opción deseada: ");
 }
 
-static void FillList()
+static void FillList(List<double>numberList)
 {
-    NumberList.Clear();
-    Console.Write("Ingrese el número de datos: ");
-    int size = int.Parse(Console.ReadLine());
-    for (int i= 0; i <= size; i++)
+    try
     {
-        Console.WriteLine($"Ingrese un número en el espacio {i+1}: ");
-        double enteredNumber = double.Parse(Console.ReadLine());
-        NumberList.Add(enteredNumber);
+        numberList.Clear();
+        Console.Write("Ingrese el número de datos: ");
+        int size = int.Parse(Console.ReadLine());
+        for (int i = 0; i <= size; i++)
+        {
+            Console.WriteLine($"Ingrese un número en el espacio {i + 1}: ");
+            double enteredNumber = double.Parse(Console.ReadLine());
+            numberList.Add(enteredNumber);
+        }
     }
+    catch (FormatException ex)
+    {
+        Console.WriteLine($"Error: {ex.Message} ");
+    }
+   
+
+      
+    
 
 }
