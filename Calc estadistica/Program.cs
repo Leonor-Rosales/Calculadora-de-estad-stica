@@ -80,6 +80,8 @@ do
         default:
             Console.Clear();
             Console.WriteLine("Opción no válida, intenta de nuevo.");
+            Console.WriteLine("\nPresiona Enter para continuar...");
+            Console.ReadLine();
             break;
     }
 } while (run);  
