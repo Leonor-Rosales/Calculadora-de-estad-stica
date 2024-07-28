@@ -2,10 +2,12 @@
 using System.Text;
 
 List<double> NumberList = new List<double>();
+
 bool run = true;
 int option = 0;
 do
 {
+    
     try
     {
         Console.Clear();
@@ -80,10 +82,9 @@ do
             Console.WriteLine("Opción no válida, intenta de nuevo.");
             break;
     }
-} while (run);
-     
+} while (run);  
 static void PrintMenu()
-{
+{   
     Console.WriteLine("--- Calculadora Estadística ---");
     Console.WriteLine("1. Crear Lista.");
     Console.WriteLine("2. Calcular Media.");
@@ -94,35 +95,47 @@ static void PrintMenu()
     Console.WriteLine("7. Salir");
     Console.Write("Ingrese la opción deseada: ");
 }
-
 static void FillList(List<double>numberList)
 {
+    int sizeList = 0;
+    double enteredNumber = 0;
     try
     {
-        
+       
         numberList.Clear();
         Console.Write("Ingrese el número de datos: ");
-        int size = int.Parse(Console.ReadLine());
-        for (int i = 0; i < size; i++)
+        sizeList = int.Parse(Console.ReadLine());
+        if (sizeList <= 0)
+        {
+            Console.WriteLine("Error: No puede ingresar valores nulos o menores a 0");
+            return;
+        }
+        for (int i = 0; i < sizeList; i++)
         {
             Console.Write($"Ingrese el dato de la posición {i + 1}: ");
-            double enteredNumber = double.Parse(Console.ReadLine());
+            enteredNumber = double.Parse(Console.ReadLine());
+            if (enteredNumber < 0)
+            {
+                Console.WriteLine("Error: No puede ingresar valores nulos");
+                return;
+            }
             numberList.Add(enteredNumber);
         }
     }
     catch (FormatException ex)
     {
         Console.WriteLine($"Error: {ex.Message} ");
+        Console.ReadKey();
     }
 }
 static void PrintList(List<double> numberList)
 {
+    numberList = numberList.OrderBy(n => n).ToList();
     foreach (double item in numberList)
     {
         Console.WriteLine(item);
     }
 }
-
 static double CalculateMean(List<double> numberList)
 { 
     double mean = 0, additionmean = 0;
@@ -148,12 +161,11 @@ static double CalculateMode(List<double> numberList)
                 count++;  
             }
         }
-
         if (count > maxCount)
         {  
         maxCount = count; 
         moda = numberList[i];
-        }
+        }     
     }
     return moda;
 }
@@ -161,7 +173,7 @@ static double CalculateMedian(List<double> numberList)
 {
     double median = 0;
     int middlenumber = 0;
-    numberList.Order();
+    numberList = numberList.OrderBy(n => n).ToList();
     if (numberList.Count % 2 == 0)
     {
         middlenumber = numberList.Count / 2;
@@ -177,8 +189,7 @@ static double CalculateMedian(List<double> numberList)
     return median;
 }
 static double CalculateStandardDeviation(List<double> numberList)
-{
-    
+{ 
     double mean = CalculateMean(numberList), sum = 0, variance = 0, standardDeviation = 0;
     foreach (double number in numberList)
     {
