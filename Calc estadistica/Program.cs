@@ -14,13 +14,7 @@ do
         PrintMenu();
         option = Convert.ToInt32(Console.ReadLine());
       
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Error: " + ex.Message);
-        Console.WriteLine("\nPresiona Enter para continuar...");
-        Console.ReadLine();
-    }
+   
     switch (option)
     {
         case 1:
@@ -83,6 +77,13 @@ do
             Console.WriteLine("\nPresiona Enter para continuar...");
             Console.ReadLine();
             break;
+    }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error: " + ex.Message);
+        Console.WriteLine("\nPresiona Enter para continuar...");
+        Console.ReadLine();
     }
 } while (run);  
 static void PrintMenu()

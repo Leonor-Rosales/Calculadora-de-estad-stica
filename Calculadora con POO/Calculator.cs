@@ -4,24 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calc_estadistica
+namespace Calculadora_con_POO
 {
-    internal class Calculadora
+    internal class Calculator
     {
-
         public List<double> NumberList { get; set; }
-        public Calculadora()
-        {
-            
-        }
-        public Calculadora(List<double> numberList)
+        public Calculator(List<double> numberList)
         {
             NumberList = new List<double>();
         }
-        public List<double> accessList()
-        {
-            return NumberList;
-        }
+
         public void PrintMenu()
         {
             Console.WriteLine("--- Calculadora Estadística con POO---");
@@ -139,5 +131,4 @@ namespace Calc_estadistica
             return standardDeviation;
         }
     }
-    
 }
